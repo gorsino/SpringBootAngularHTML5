@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+    <changeSet author="pepe" id="001">
+        <createTable tableName="account">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(45)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="pwd" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_signin_date" type="datetime"/>
+        </createTable>
+
+        <insert tableName="account">
+            <column name="email" value="skeleton"/>
+            <column name="pwd" value="JyRNUDJWykoqPIz+eub+lqVornlXD/XP"/><!--skeleton-->
+            <column name="created_date" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

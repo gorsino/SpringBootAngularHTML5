@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+    <changeSet author="pepe" id="003">
+        <createTable tableName="account_group">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="account_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="account_id" baseTableName="account_group"
+                                 constraintName="ACCOUNT_GROUP_ACCOUNT_FK"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="account"/>
+
+        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="account_group"
+                                 constraintName="ACCOUNT_GROUP_GROUP_FK"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="group"/>
+
+        <insert tableName="account_group">
+            <column name="account_id" value="1"/>
+            <column name="group_id" value="1"/>
+        </insert>
+
+        <insert tableName="account_group">
+            <column name="account_id" value="1"/>
+            <column name="group_id" value="2"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

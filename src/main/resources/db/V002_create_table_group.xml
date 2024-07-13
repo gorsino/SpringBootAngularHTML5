@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+    <changeSet author="pepe" id="002">
+        <createTable tableName="group">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="code" type="varchar(45)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="label" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="tinytext"/>
+        </createTable>
+
+        <insert tableName="group">
+            <column name="code" value="ADMIN"/>
+            <column name="label" value="Administrateur"/>
+        </insert>
+
+        <insert tableName="group">
+            <column name="code" value="USER"/>
+            <column name="label" value="Utilisateur"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
