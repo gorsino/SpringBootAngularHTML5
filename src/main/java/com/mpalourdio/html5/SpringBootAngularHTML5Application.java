@@ -9,13 +9,26 @@
 
 package com.mpalourdio.html5;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SpringBootAngularHTML5Application {
+    private final static Logger LOG = LoggerFactory.getLogger("SpringBootAngularHTML5Application");
 
     public static void main(String... args) {
+
+        final String springConfigDev = (
+                (args.length > 0 && args[0].compareTo("localhost") == 0) ? ",classpath:/dev.properties" : "");
+
+        args = new String[]{
+                "--spring.config.location=classpath:/application.properties" + springConfigDev
+        };
+
+        System.setProperty("spring.devtools.restart.enabled", "false");
+
         SpringApplication.run(SpringBootAngularHTML5Application.class, args);
     }
 }
