@@ -7,9 +7,11 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SecondComponent } from './second.component';
+import { provideRouter } from "@angular/router";
 
 describe('SecondComponent', () => {
     let component: SecondComponent;
@@ -17,8 +19,12 @@ describe('SecondComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [SecondComponent],
-            imports: [HttpClientTestingModule]
+            imports: [SecondComponent],
+            providers: [
+                provideHttpClient(),
+                provideHttpClientTesting(),
+                provideRouter([]),
+            ]
         })
             .compileComponents();
     });
